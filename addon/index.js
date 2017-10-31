@@ -34,6 +34,8 @@ export default Ember.Mixin.create({
     this._super(...arguments);
 
     let config = this.get('didChangeAttrsConfig');
+    let equalityFn = config.isEqual || isEqual;
+
     let trackedAttrs = config.attrs;
     let oldValues = this.get('_didChangeAttrsWeakMap').get(this);
     let changes = {};
@@ -43,7 +45,7 @@ export default Ember.Mixin.create({
       let current = this.get(key);
       let previous = oldValues[key];
 
-      if (!isEqual(key, previous, current)) { //TODO: configurable equality fn
+      if (!equalityFn(key, previous, current)) {
         changes[key] = { previous, current };
         oldValues[key] = current;
       }
