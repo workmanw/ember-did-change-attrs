@@ -1,26 +1,5 @@
 # ember-did-change-attrs
 
-This README outlines the details of collaborating on this Ember addon.
+This addon is a WIP rethink of [ember-diff-attrs](https://github.com/workmanw/ember-diff-attrs) which offered a decorator style approach to this problem.
 
-## Installation
-
-* `git clone <repository-url>` this repository
-* `cd ember-did-change-attrs`
-* `npm install`
-
-## Running
-
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
-
-## Running Tests
-
-* `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
-
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
+With `ember-did-change-attrs` we're going to solve the same problem using mixins instead of decorators. The hope is to offer a cleaner and more clear syntax without sacrificing functionality.
