@@ -21,6 +21,8 @@ export default Ember.Component.extend(DidChangeAttrs, {
   },
 
   didChangeAttrs(changes) {
+    this._super(...arguments);
+
     if(changes.email) {
       let oldEmail = changes.email.previous,
           newEmail = changes.email.current;
