@@ -1,4 +1,4 @@
-# ember-did-change-attrs
+# ember-did-change-attrs [![Build Status](https://travis-ci.org/workmanw/ember-did-change-attrs.svg?branch=master)](https://travis-ci.org/workmanw/ember-did-change-attrs)
 
 This addon is a WIP rethink of [ember-diff-attrs](https://github.com/workmanw/ember-diff-attrs) which offered a decorator style approach to this problem.
 
