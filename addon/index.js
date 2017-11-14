@@ -1,4 +1,3 @@
-import WeakMap from 'ember-weakmap';
 import Ember from 'ember';
 
 function isEqual(key, a, b) {
@@ -6,15 +5,15 @@ function isEqual(key, a, b) {
 }
 
 export default Ember.Mixin.create({
-  _didChangeAttrsWeakMap: null, //this tracks previous state of any `trackAttrChanges`
+  _didChangeAttrsBuffer: null, //this tracks previous state of any `trackAttrChanges`
   didChangeAttrsConfig: [], //attributes to track
 
   didReceiveAttrs() {
     this._super(...arguments);
 
-    let weakMap = this.get('_didChangeAttrsWeakMap');
+    let buffer = this.get('_didChangeAttrsBuffer');
 
-    if (weakMap === null) { //first run
+    if (buffer === null) { //first run
       let config = this.get('didChangeAttrsConfig');
       let trackedAttrs = config.attrs;
       let initialValues = {};
@@ -24,9 +23,7 @@ export default Ember.Mixin.create({
         initialValues[key] = this.get(key);
       }
 
-      weakMap = new WeakMap();
-      weakMap.set(this, initialValues);
-      this.set('_didChangeAttrsWeakMap', weakMap);
+      this.set('_didChangeAttrsBuffer', initialValues);
     }
   },
 
@@ -37,7 +34,7 @@ export default Ember.Mixin.create({
     let equalityFn = config.isEqual || isEqual;
 
     let trackedAttrs = config.attrs;
-    let oldValues = this.get('_didChangeAttrsWeakMap').get(this);
+    let oldValues = this.get('_didChangeAttrsBuffer');
     let changes = {};
 
     for (let i=0; i<trackedAttrs.length; i++) {
